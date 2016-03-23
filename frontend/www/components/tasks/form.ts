@@ -1,6 +1,6 @@
 import {Component} from 'angular2/core';
 import {Task} from '../../models/task';
-// import {TasksService} from '../../services/tasks';
+import {TaskService} from '../../services/task';
 
 @Component({
   selector: 'task-form',
@@ -11,11 +11,13 @@ import {Task} from '../../models/task';
 export class TaskForm {
   task: Task;
 
-  // constructor(@Inject(TasksService) private TasksService:any) {}
+  constructor(private _taskService: TaskService) {
+    this.task = new Task('', '');
+  }
 
-  // submit() {
-  //   this.TasksService.add(this.task.name, this.task.description);
-  //   this.task.name = '';
-  //   this.task.description = '';
-  // }
+  submit() {
+    this._taskService.create(this.task);
+    this.task.name = '';
+    this.task.description = '';
+  }
 }

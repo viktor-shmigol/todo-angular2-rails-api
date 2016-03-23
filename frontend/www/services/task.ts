@@ -1,5 +1,5 @@
 import {Injectable} from 'angular2/core';
-import {Http} from 'angular2/http';
+import {Http, Headers} from 'angular2/http';
 import {Observable} from 'rxjs/Observable';
 import {Observer} from 'rxjs/Observer';
 import 'rxjs/add/operator/share';
@@ -13,8 +13,10 @@ export class TaskService {
   private _dataStore: {
     tasks: Task[];
   };
+  private headers;
 
   constructor(private _http: Http) {
+    this.headers = new Headers({'Content-Type': 'application/json'});
     this.tasks$ = new Observable(observer =>
       this._tasksObserver = observer).share();
     this._dataStore = { tasks: [] };
@@ -27,32 +29,32 @@ export class TaskService {
     }, error => console.log('Could not load tasks.'));
   }
 
-  create(todo) {
-    this._http.post('/api/tasks', todo)
+  create(task) {
+    this._http.post('/api/tasks', JSON.stringify({task: task}), { headers: this.headers })
       .map(response => response.json()).subscribe(data => {
       this._dataStore.tasks.push(data);
       this._tasksObserver.next(this._dataStore.tasks);
-    }, error => console.log('Could not create todo.'));
+    }, error => console.log('Could not create task.'));
   }
 
-  update(todo) {
-    this._http.put(`/api/tasks/${todo.id}`, todo)
+  update(task) {
+    this._http.put(`/api/tasks/${task.id}`, task)
       .map(response => response.json()).subscribe(data => {
-      this._dataStore.tasks.forEach((todo, i) => {
-        if (todo.id === data.id) { this._dataStore.tasks[i] = data; }
+      this._dataStore.tasks.forEach((task, i) => {
+        if (task.id === data.id) { this._dataStore.tasks[i] = data; }
       });
 
       this._tasksObserver.next(this._dataStore.tasks);
-    }, error => console.log('Could not update todo.'));
+    }, error => console.log('Could not update task.'));
   }
 
-  delete(todoId: number) {
-    this._http.delete(`/api/tasks/${todoId}`).subscribe(response => {
+  delete(taskId: number) {
+    this._http.delete(`/api/tasks/${taskId}`).subscribe(response => {
       this._dataStore.tasks.forEach((t, index) => {
-        if (t.id === todoId) { this._dataStore.tasks.splice(index, 1); }
+        if (t.id === taskId) { this._dataStore.tasks.splice(index, 1); }
       });
 
       this._tasksObserver.next(this._dataStore.tasks);
-    }, error => console.log('Could not delete todo.'));
+    }, error => console.log('Could not delete task.'));
   }
 }
