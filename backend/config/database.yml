@@ -1,0 +1,15 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  host: localhost
+  pool: 5
+  username: postgres
+  password:
+
+development:
+  <<: *default
+  database: task_manager_development
+
+test:
+  <<: *default
+  database: task_manager_test
