@@ -1,6 +1,6 @@
 <h1>My tasks</h1>
 <ul class="list-group">
-  <li class="list-group-item" *ngFor='#task of tasks'>
+  <li class="list-group-item" *ngFor='#task of tasks | async'>
     {{task.name}}
     <p>{{task.description}}</p>
   </li>
