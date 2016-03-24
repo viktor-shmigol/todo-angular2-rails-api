@@ -8,7 +8,9 @@ class User < ActiveRecord::Base
   validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, on: :create }, uniqueness: true
 
   def authenticate!
-    update_attribute(:token, Digest::SHA1.hexdigest([Time.now, id, rand].join)[0..16])
+    payload = { data: id }
+    token = JWT.encode payload, Rails.application.secrets['secret_key_base'], 'HS256'
+    update_attribute(:token, token)
     token
   end
 end

@@ -2,6 +2,7 @@ import {Component} from 'angular2/core';
 import {ROUTER_DIRECTIVES, RouteConfig} from 'angular2/router';
 import {TasksComponent} from './tasks';
 import {LoginComponent} from './login';
+import {RegistrationComponent} from './registration';
 
 @Component({
   selector: 'app',
@@ -14,6 +15,7 @@ import {LoginComponent} from './login';
   { path: '/',      name: 'root',  redirectTo: ['/Tasks']  },
   { path: '/tasks', name: 'Tasks', component: TasksComponent },
   { path: '/login', name: 'Login', component: LoginComponent }
+  { path: '/registration', name: 'Registration', component: RegistrationComponent }
 ])
 
 export class AppComponent {

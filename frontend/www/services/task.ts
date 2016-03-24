@@ -1,5 +1,6 @@
 import {Injectable} from 'angular2/core';
-import {Http, Headers} from 'angular2/http';
+import {Headers} from 'angular2/http';
+import {AuthHttp} from 'angular2-jwt';
 import {Observable} from 'rxjs/Observable';
 import {Observer} from 'rxjs/Observer';
 import 'rxjs/add/operator/share';
@@ -15,7 +16,7 @@ export class TaskService {
   };
   private headers;
 
-  constructor(private _http: Http) {
+  constructor(private authHttp: AuthHttp) {
     this.headers = new Headers({'Content-Type': 'application/json'});
     this.tasks$ = new Observable(observer =>
       this._tasksObserver = observer).share();
@@ -23,14 +24,14 @@ export class TaskService {
   }
 
   load() {
-    this._http.get('/api/tasks').map(response => response.json()).subscribe(data => {
+    this.authHttp.get('/api/tasks').map(response => response.json()).subscribe(data => {
       this._dataStore.tasks = data;
       this._tasksObserver.next(this._dataStore.tasks);
     }, error => console.log('Could not load tasks.'));
   }
 
   create(task) {
-    this._http.post('/api/tasks', JSON.stringify({task: task}), { headers: this.headers })
+    this.authHttp.post('/api/tasks', JSON.stringify({task: task}), { headers: this.headers })
       .map(response => response.json()).subscribe(data => {
       this._dataStore.tasks.unshift(data);
       this._tasksObserver.next(this._dataStore.tasks);
@@ -38,7 +39,7 @@ export class TaskService {
   }
 
   update(task) {
-    this._http.put(`/api/tasks/${task.id}`, JSON.stringify({task: task}), { headers: this.headers })
+    this.authHttp.put(`/api/tasks/${task.id}`, JSON.stringify({task: task}), { headers: this.headers })
       .map(response => response.json()).subscribe(data => {
       this._dataStore.tasks.forEach((task, i) => {
         if (task.id === data.id) { this._dataStore.tasks[i] = data; }
@@ -49,7 +50,7 @@ export class TaskService {
   }
 
   delete(taskId: number) {
-    this._http.delete(`/api/tasks/${taskId}`).subscribe(response => {
+    this.authHttp.delete(`/api/tasks/${taskId}`).subscribe(response => {
       this._dataStore.tasks.forEach((t, index) => {
         if (t.id === taskId) { this._dataStore.tasks.splice(index, 1); }
       });

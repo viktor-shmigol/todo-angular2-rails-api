@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 class TasksController < ApplicationController
   expose(:task)
-  expose(:tasks) { |default| default.order(created_at: :desc) }
+  expose(:tasks) { current_user.tasks.order(created_at: :desc) }
 
   def index
     render json: tasks, status: :ok
@@ -22,6 +22,6 @@ class TasksController < ApplicationController
   private
 
   def task_params
-    params.require(:task).permit(:name, :description, :done)
+    params.require(:task).permit(:name, :description, :done).merge(user_id: current_user.id)
   end
 end

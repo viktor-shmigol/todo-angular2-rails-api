@@ -11,7 +11,6 @@ export class AuthService {
   }
 
   login(user) {
-    console.log(this.router);
     let body = JSON.stringify(user);
     this.http.post('/api/sessions', body, { headers: this.headers })
       .subscribe(
