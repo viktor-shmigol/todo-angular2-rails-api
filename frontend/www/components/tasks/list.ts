@@ -16,4 +16,10 @@ export class TaskList {
     this.tasks = this._taskService.tasks$;
     this._taskService.load();
   }
+
+  delete(task) {
+    if (confirm('Are you sure?')) {
+      this._taskService.delete(task.id);
+    };
+  }
 }

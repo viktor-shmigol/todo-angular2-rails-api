@@ -12,6 +12,11 @@ class TasksController < ApplicationController
     render json: { errors: task.errors.full_message }, status: 422
   end
 
+  def destroy
+    task.destroy
+    head(204)
+  end
+
   private
 
   def task_params

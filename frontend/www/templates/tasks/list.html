@@ -3,5 +3,6 @@
   <li class="list-group-item" *ngFor='#task of tasks | async'>
     {{task.name}}
     <p>{{task.description}}</p>
+    <button (click)="delete(task);" type="button" class="btn btn-danger">Delete</button>
   </li>
 </ul>
