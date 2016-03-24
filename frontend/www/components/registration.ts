@@ -1,20 +1,21 @@
 import {Component} from 'angular2/core';
-import {User} from '../models/user';
 import {AuthService} from '../services/auth';
+import {ROUTER_DIRECTIVES} from 'angular2/router';
 
 @Component({
   moduleId: module.id,
-  templateUrl: '../templates/login.html'
+  templateUrl: '../templates/registration.html',
+  directives: [ROUTER_DIRECTIVES]
 })
 
 export class RegistrationComponent {
-  user: User;
+  user: {};
 
   constructor(private _authService: AuthService) {
-    this.user = new User('', '', '');
+    this.user = {};
   }
 
-  login() {
-    this._authService.login(this.user);
+  registration() {
+    this._authService.registration(this.user);
   }
 }

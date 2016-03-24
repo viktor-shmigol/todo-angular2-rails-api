@@ -1,17 +1,18 @@
 import {Component} from 'angular2/core';
-import {User} from '../models/user';
 import {AuthService} from '../services/auth';
+import {ROUTER_DIRECTIVES} from 'angular2/router';
 
 @Component({
   moduleId: module.id,
-  templateUrl: '../templates/login.html'
+  templateUrl: '../templates/login.html',
+  directives: [ROUTER_DIRECTIVES]
 })
 
 export class LoginComponent {
-  user: User;
+  user: {};
 
   constructor(private _authService: AuthService) {
-    this.user = new User('', '', '');
+    this.user = {};
   }
 
   login() {

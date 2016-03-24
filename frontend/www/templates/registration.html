@@ -1,0 +1,19 @@
+<div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4" style="margin-top: 90px;">
+  <form class="form-signin" (ngSubmit)="registration()">
+    <h2 class="form-signin-heading">Please sign up</h2>
+     <div class="form-group">
+      <label for="exampleInputEmail1">Email address</label>
+      <input [(ngModel)]="user.email" type="email" class="form-control" id="exampleInputEmail1" placeholder="Email" required>
+    </div>
+    <div class="form-group">
+      <label for="exampleInputPassword1">Password</label>
+      <input [(ngModel)]="user.password" id="password" type="password" class="form-control" pattern="^\S{6,}$" onchange="this.setCustomValidity(this.validity.patternMismatch ? 'Password is too short (minimum is 8 characters)' : ''); if(this.checkValidity()) form.password_confirmation.pattern = this.value;" placeholder="Password" required>
+    </div>
+    <div class="form-group">
+      <label for="exampleInputPassword1">Password confirmation</label>
+      <input [(ngModel)]="user.password_confirmation" id="password_confirmation" class="form-control" type="password" pattern="^\S{6,}$" placeholder='Confirm Password' onchange="this.setCustomValidity(this.validity.patternMismatch ? 'Password confirmation doesn\'t match Password' : '');" placeholder="Password confirmation" required>
+    </div>
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>
+    <a class="btn btn-lg btn-info btn-block" [routerLink]="['Login']">Login</a>
+  </form>
+</div>

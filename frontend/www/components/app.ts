@@ -14,7 +14,7 @@ import {RegistrationComponent} from './registration';
 @RouteConfig([
   { path: '/',      name: 'root',  redirectTo: ['/Tasks']  },
   { path: '/tasks', name: 'Tasks', component: TasksComponent },
-  { path: '/login', name: 'Login', component: LoginComponent }
+  { path: '/login', name: 'Login', component: LoginComponent },
   { path: '/registration', name: 'Registration', component: RegistrationComponent }
 ])
 
