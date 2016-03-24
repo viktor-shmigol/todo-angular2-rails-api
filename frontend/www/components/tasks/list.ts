@@ -11,7 +11,7 @@ import {ByFieldPipe} from '../../pipes/by_field';
   templateUrl: '../../templates/tasks/list.html',
 })
 
-export class TaskList {
+export class TaskListComponent {
   tasks: Observable<Task[]>;
 
   constructor(private _taskService: TaskService) {

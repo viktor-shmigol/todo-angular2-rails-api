@@ -1,0 +1,14 @@
+<div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4" style="margin-top: 90px;">
+  <form class="form-signin" (ngSubmit)="login()">
+    <h2 class="form-signin-heading">Please login</h2>
+     <div class="form-group">
+      <label for="exampleInputEmail1">Email address</label>
+      <input [(ngModel)]="user.email" type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+    </div>
+    <div class="form-group">
+      <label for="exampleInputPassword1">Password</label>
+      <input [(ngModel)]="user.password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+    </div>
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
+  </form>
+</div>

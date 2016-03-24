@@ -8,11 +8,11 @@ import {TaskService} from '../../services/task';
   templateUrl: '../../templates/tasks/form.html',
 })
 
-export class TaskForm {
+export class TaskFormComponent {
   task: Task;
 
   constructor(private _taskService: TaskService) {
-    this.task = new Task('', '';
+    this.task = new Task('', '');
   }
 
   submit() {

@@ -6,6 +6,7 @@ gem 'pg'
 gem 'active_model_serializers', github: 'rails-api/active_model_serializers'
 gem 'decent_exposure'
 gem 'rack-cors', require: 'rack/cors'
+gem 'bcrypt'
 
 group :development, :test do
   gem 'pry'
