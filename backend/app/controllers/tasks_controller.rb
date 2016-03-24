@@ -17,6 +17,8 @@ class TasksController < ApplicationController
     head(204)
   end
 
+  alias update create
+
   private
 
   def task_params

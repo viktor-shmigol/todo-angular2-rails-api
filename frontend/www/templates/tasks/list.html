@@ -1,8 +1,12 @@
 <h1>My tasks</h1>
 <ul class="list-group">
-  <li class="list-group-item" *ngFor='#task of tasks | async'>
+  <li class="list-group-item" [ngClass]="{'disabled': task.done}" *ngFor='#task of tasks | async'>
     {{task.name}}
     <p>{{task.description}}</p>
+    <button [ngClass]="{'btn-success': !task.done, 'btn-warning': task.done }" (click)="task.done = !task.done; update(task);" type="button" class="btn">
+      <span *ngIf="!task.done">Mark done</span>
+      <span *ngIf="task.done">Mark active</span>
+    </button>
     <button (click)="delete(task);" type="button" class="btn btn-danger">Delete</button>
   </li>
 </ul>

@@ -38,7 +38,7 @@ export class TaskService {
   }
 
   update(task) {
-    this._http.put(`/api/tasks/${task.id}`, task)
+    this._http.put(`/api/tasks/${task.id}`, JSON.stringify({task: task}), { headers: this.headers })
       .map(response => response.json()).subscribe(data => {
       this._dataStore.tasks.forEach((task, i) => {
         if (task.id === data.id) { this._dataStore.tasks[i] = data; }

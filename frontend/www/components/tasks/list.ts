@@ -22,4 +22,8 @@ export class TaskList {
       this._taskService.delete(task.id);
     };
   }
+
+  update (task) {
+     this._taskService.update(task);
+  }
 }
