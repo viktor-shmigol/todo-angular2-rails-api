@@ -10,8 +10,4 @@ export class Task {
     this.description = description;
     this.done = done || false;
   }
-
-  save() {
-    console.log('HTTP request for save in db');
-  }
 }

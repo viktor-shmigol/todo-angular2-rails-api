@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 class TasksController < ApplicationController
   expose(:task)
-  expose(:tasks)
+  expose(:tasks) { |default| default.order(created_at: :desc) }
 
   def index
     render json: tasks, status: :ok

@@ -32,7 +32,7 @@ export class TaskService {
   create(task) {
     this._http.post('/api/tasks', JSON.stringify({task: task}), { headers: this.headers })
       .map(response => response.json()).subscribe(data => {
-      this._dataStore.tasks.push(data);
+      this._dataStore.tasks.unshift(data);
       this._tasksObserver.next(this._dataStore.tasks);
     }, error => console.log('Could not create task.'));
   }

@@ -12,12 +12,11 @@ export class TaskForm {
   task: Task;
 
   constructor(private _taskService: TaskService) {
-    this.task = new Task('', '');
+    this.task = new Task('', '';
   }
 
   submit() {
     this._taskService.create(this.task);
-    this.task.name = '';
-    this.task.description = '';
+    this.task = new Task('', '');
   }
 }
