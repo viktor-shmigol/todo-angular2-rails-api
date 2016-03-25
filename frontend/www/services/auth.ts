@@ -40,4 +40,12 @@ export class AuthService {
       }
     );
   }
+
+  isCurrentUser() {
+    if(!localStorage.getItem('token')) {
+      this.router.navigate(['Login']);
+      return false;
+    }
+    return true;
+  }
 }

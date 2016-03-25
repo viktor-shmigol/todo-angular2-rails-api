@@ -1,6 +1,6 @@
 import {Component} from 'angular2/core';
-import {AuthService} from '../services/auth';
 import {ROUTER_DIRECTIVES} from 'angular2/router';
+import {AuthService} from '../services/auth';
 
 @Component({
   moduleId: module.id,
