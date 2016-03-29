@@ -1,6 +1,6 @@
 import {Injectable} from 'angular2/core';
 import {Headers} from 'angular2/http';
-import {AuthHttp} from 'angular2-jwt';
+import {AuthHttp} from 'angular2-jwt/angular2-jwt';
 import {Observable} from 'rxjs/Observable';
 import {Observer} from 'rxjs/Observer';
 import 'rxjs/add/operator/share';

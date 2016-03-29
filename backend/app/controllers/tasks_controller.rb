@@ -9,7 +9,7 @@ class TasksController < ApplicationController
 
   def create
     return render json: task, status: :created if task.update(task_params)
-    render json: { errors: task.errors.full_message }, status: 422
+    render json: { errors: task.errors.full_messages }, status: 422
   end
 
   def destroy

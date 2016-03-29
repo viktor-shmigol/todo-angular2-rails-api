@@ -113,6 +113,8 @@
     "reflect-metadata": "0.1.2",
     "rxjs": "5.0.0-beta.2",
     "systemjs": "~0.19.18",
-    "zone.js": "0.5.15"
+    "zone.js": "0.5.15",
+    "express": "^4.13.4",
+    "request": "^2.69.0"
   }
 }

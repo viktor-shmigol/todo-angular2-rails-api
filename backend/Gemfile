@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.2.5'
+gem 'rails', '4.2.6'
 gem 'rails-api'
 gem 'pg'
 gem 'active_model_serializers', github: 'rails-api/active_model_serializers'
@@ -13,4 +13,9 @@ group :development, :test do
   gem 'pry'
   gem 'spring'
   gem 'rubocop'
+  gem 'rspec-rails'
+  gem 'shoulda-matchers'
+  gem 'rspec-collection_matchers'
+  gem 'factory_girl_rails'
+  gem 'database_cleaner'
 end
