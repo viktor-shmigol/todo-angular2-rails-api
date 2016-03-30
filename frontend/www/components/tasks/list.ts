@@ -13,8 +13,10 @@ import {ByFieldPipe} from '../../pipes/by_field';
 
 export class TaskListComponent {
   tasks: Observable<Task[]>;
+  editForm: {};
 
   constructor(private _taskService: TaskService) {
+    this.editForm = {};
     this.tasks = this._taskService.tasks$;
     this._taskService.load();
   }

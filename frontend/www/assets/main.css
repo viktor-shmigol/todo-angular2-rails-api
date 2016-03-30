@@ -63,3 +63,7 @@ button:hover {
 }
 
 .form-signin { margin-top: 90px; }
+
+.top-buffer { margin-top: 20px; }
+
+.block { width: 100%; }

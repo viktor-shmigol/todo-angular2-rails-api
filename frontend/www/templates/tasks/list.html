@@ -3,16 +3,23 @@
 <ul class="list-group">
   <li class="list-group-item" [ngClass]="{'disabled': task.done}" *ngFor='#task of tasks | async | byField: "done": false'>
     <label>Name:</label>
-    {{task.name}}
-    <p>
-      <label>Description:</label>
-      {{task.description}}
-    </p>
-    <button [ngClass]="{'btn-success': !task.done, 'btn-warning': task.done }" (click)="task.done = !task.done; update(task);" type="button" class="btn">
-      <span *ngIf="!task.done">Mark done</span>
-      <span *ngIf="task.done">Mark active</span>
-    </button>
-    <button (click)="delete(task);" type="button" class="btn btn-danger">Delete</button>
+    <p *ngIf="!editForm[task.id]" class="list-group-item-text">{{task.name}}</p>
+    <input *ngIf="editForm[task.id]" [(ngModel)]="task.name" class="block" required/>
+    <label>Description:</label>
+    <p *ngIf="!editForm[task.id]" class="list-group-item-text">{{task.description}}</p>
+    <textarea *ngIf="editForm[task.id]" [(ngModel)]="task.description" class="block" required></textarea>
+    <div *ngIf="editForm[task.id]" class="top-buffer">
+      <button [disabled]="!task.name || !task.description" (click)="update(task); editForm[task.id] = false;" type="button" class="btn btn-primary">Save</button>
+      <button (click)="editForm[task.id] = !editForm[task.id];" type="button" class="btn btn-danger">Cancel</button>
+    </div>
+    <div *ngIf="!editForm[task.id]" class="top-buffer">
+      <button [ngClass]="{'btn-success': !task.done, 'btn-warning': task.done }" (click)="task.done = !task.done; update(task);" type="button" class="btn">
+        <span *ngIf="!task.done">Mark done</span>
+        <span *ngIf="task.done">Mark active</span>
+      </button>
+      <button (click)="editForm[task.id] = !editForm[task.id]" type="button" class="btn btn-primary">Edit</button>
+      <button (click)="delete(task);" type="button" class="btn btn-danger">Delete</button>
+    </div>
   </li>
 </ul>
 
@@ -20,15 +27,15 @@
 <ul class="list-group">
   <li class="list-group-item" [ngClass]="{'disabled': task.done}" *ngFor='#task of tasks | async | byField: "done": true'>
     <label>Name:</label>
-    {{task.name}}
-    <p>
-      <label>Description:</label>
-      {{task.description}}
-    </p>
-    <button [ngClass]="{'btn-success': !task.done, 'btn-warning': task.done }" (click)="task.done = !task.done; update(task);" type="button" class="btn">
-      <span *ngIf="!task.done">Mark done</span>
-      <span *ngIf="task.done">Mark active</span>
-    </button>
-    <button (click)="delete(task);" type="button" class="btn btn-danger">Delete</button>
+    <p class="list-group-item-text">{{task.name}}</p>
+    <label>Description:</label>
+    <p class="list-group-item-text">{{task.description}}</p>
+    <div class="top-buffer">
+      <button [ngClass]="{'btn-success': !task.done, 'btn-warning': task.done }" (click)="task.done = !task.done; update(task);" type="button" class="btn">
+        <span *ngIf="!task.done">Mark done</span>
+        <span *ngIf="task.done">Mark active</span>
+      </button>
+      <button (click)="delete(task);" type="button" class="btn btn-danger">Delete</button>
+    </div>
   </li>
 </ul>
